@@ -49,7 +49,10 @@ function buildNewTerrain(length) {
 }
 
 /**
- *
+ * Loop through the ant collection and:
+ *  - Update the index for each ant
+ *  - Remove any ant which fall out of the
+ *    terrain
  * @param {Ant[]} ants
  * @param {number} length
  */
@@ -66,6 +69,12 @@ function updateAntsIndex(ants, length) {
   }, []);
 }
 
+/**
+ * Collect all the updates necessary to the
+ * terrain based on the number of existent
+ * ants
+ * @param {Ant[]} ants
+ */
 function calculateTerrainUpdate(ants) {
   const indexMap = {};
   ants.forEach(ant => {
@@ -82,6 +91,14 @@ function calculateTerrainUpdate(ants) {
   return indexMap;
 }
 
+/**
+ * Assign the correct symbols to the terrain:
+ *  - '>': ant walking to right
+ *  - '<': ant walking to left
+ *  - '+': one ant over another
+ * @param {string[]} terrain
+ * @param {[index: number]: {ants:number, direction: number}}} updateToApply
+ */
 function updateTerrain(terrain, updateToApply = {}) {
   Object.keys(updateToApply).forEach(index => {
     const update = updateToApply[index];
