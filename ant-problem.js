@@ -1,4 +1,4 @@
-const inputs = ['.>>...<<.', '+++++++'];
+const inputs = ['>.......', '.......<', '.>>...<<.', '+++++++'];
 
 const DIRECTION = {
   RIGHT: 1,
